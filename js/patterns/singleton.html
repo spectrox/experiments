@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Singleton Example</title>
+</head>
+<body>
+
+<script>
+
+	// one way to create Singleton
+	console.log('first way:');
+
+	var Singleton;
+
+	(function(){
+
+			var instance;
+
+			Singleton = function Singleton() {
+				
+				if (instance) {
+					return instance;
+				}
+				
+				instance = this;
+				
+			}
+			
+			Singleton.prototype.setMessage = function(message) {
+				this.msg = message;
+			}
+			
+			Singleton.prototype.getMessage = function() {
+				return this.msg;
+			}
+
+	}());
+	
+	var s1 = new Singleton();
+	s1.setMessage('test1');
+	var s2 = new Singleton();
+	s2.setMessage('test2');
+
+	console.log(s1.getMessage());
+	console.log(s2.getMessage());
+	
+	s2.setMessage('test3');
+
+	console.log(s2.getMessage());
+	console.log(s1.getMessage());
+	
+	delete(Singleton);
+	
+	// second way
+	console.log('second way:');
+	
+	function Singleton() {
+		
+		if (typeof Singleton.instance === 'object') {
+			
+			return Singleton.instance;
+			
+		}
+		
+		this.msg = 'Message';
+		
+		Singleton.instance = this;
+		
+	}
+	
+	var s1 = new Singleton();
+	var s2 = new Singleton();
+	console.log(s1.msg);
+	console.log(s2.msg);
+	s2.msg = 'New message';
+	console.log(s1.msg);
+	console.log(s2.msg);
+	
+</script>
+
+</body>
+</html>
