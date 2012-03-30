@@ -1,0 +1,3 @@
+Simple script which searches for all files on your disks and collects info to a sqlite database.
+
+Uses windows-specific function to get list of available disk drives.

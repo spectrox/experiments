@@ -1,0 +1,3 @@
+Part of the system which recursively validates web-pages starting at one site and collects information about most popular errors.
+
+For a validation purpose has been used downloadable package from W3C validator site.
