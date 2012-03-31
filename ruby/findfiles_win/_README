@@ -1,3 +1,15 @@
 Simple script which searches for all files on your disks and collects info to a sqlite database.
 
+So, now, when i've already finished with collecting files, just have to log in to my sqlite database and execute queries:
+
+sqlite> .schema items
+CREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" va
+rchar(255), "basename" varchar(255), "size" integer);
+sqlite> .output out1.txt
+sqlite> select c,basename,round(size/(1024*1024)),l from (select *, count() as c
+, group_concat(name) as l from items group by basename, size) a where c>1 order
+by round(size/1000000) desc, c desc;
+
+As result i've got csv-file (out1.txt) with list of doubles (files) sorted by size backwards.
+
 Uses windows-specific function to get list of available disk drives.
